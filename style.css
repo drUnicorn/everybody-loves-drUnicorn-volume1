@@ -1,0 +1,23 @@
+@namespace "";
+@namespace html "http://www.w3.org/1999/xhtml";
+
+row {
+ display: block;
+ height: 150px;
+ overflow: visible;
+ font-size: 0;
+ margin: 0;
+ padding: 0;
+}
+row:nth-child(2n-1) {
+ position: relative;
+ left: 86.6025404px;
+}
+cell {
+ display: inline-block;
+ margin: 0;
+ padding: 0;
+ height: 200px;
+ width: 173.2050808px;
+ background: url("./hex.svg");
+}
