@@ -2,11 +2,25 @@
 <html:html xmlns:html="http://www.w3.org/1999/xhtml">
  <html:head>
   <html:title>Hexagon</html:title>
+  
+  <!-- Core scripts -->
   <html:link rel="stylesheet" href="./style.css" />
   <html:script src="./enviro.js" />
   <html:script src="./engine.js" />
-  <html:script data-width="5" data-height="3" src="./modules/maps/empty.js" />
  </html:head>
  <html:body>
+  <!-- Modules -->
+  <html:script
+   data-width="9"
+   data-height="9"
+   src="./modules/maps/empty.js"
+  />
+  <html:script
+   data-x="5"
+   data-y="4"
+   data-a="0"
+   data-s="77"
+   src="./modules/intel/langton.js"
+  />
  </html:body>
 </html:html>

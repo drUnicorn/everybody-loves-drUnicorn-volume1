@@ -21,6 +21,7 @@ Element.prototype.setAttr  = Element.prototype.setAttribute;
 Element.prototype.getAttr  = Element.prototype.getAttribute;
 Element.prototype.hasAttr  = Element.prototype.hasAttribute;
 Element.prototype.addAttr  = function(n){this.setAttr(n,"");};
+Element.prototype.rmAttr   = Element.prototype.removeAttribute;
 
 Element.prototype.on       = Element.prototype.addEventListener;
 Element.prototype.rmon     = Element.prototype.removeEventListener;

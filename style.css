@@ -1,9 +1,12 @@
 @namespace "";
 @namespace html "http://www.w3.org/1999/xhtml";
 
+
 row {
  display: block;
  height: 150px;
+ width: intrinsic; /* WebKit */
+ width: -moz-max-content; /* Gecko */
  overflow: visible;
  font-size: 0;
  margin: 0;
