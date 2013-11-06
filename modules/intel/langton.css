@@ -8,6 +8,7 @@
  left: 65px;
  top: 65px;
  z-index: 10;
+ border-radius: 10px;
 }
 [data-cellnode-blurbsky-vesmirny-kriznik]:after {
  background: red;

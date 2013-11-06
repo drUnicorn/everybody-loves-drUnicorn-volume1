@@ -1,9 +1,12 @@
 (function(){
 
-var x = parseInt(doc.currentScript.getAttr("data-x"));
-var y = parseInt(doc.currentScript.getAttr("data-y"));
-var a = parseInt(doc.currentScript.getAttr("data-a"));
-var s = parseInt(doc.currentScript.getAttr("data-s"));
+var x       = parseInt(doc.currentScript.getAttr("data-x"));
+var y       = parseInt(doc.currentScript.getAttr("data-y"));
+var angle   = parseInt(doc.currentScript.getAttr("data-start-angle"));
+var steps   = parseInt(doc.currentScript.getAttr("data-steps"));
+var angle1  = parseInt(doc.currentScript.getAttr("data-a1"));
+var angle2  = parseInt(doc.currentScript.getAttr("data-a2"));
+window.time = parseInt(doc.currentScript.getAttr("data-time"));
 
 var style = doc.mkNode("link");
 style.setAttr("rel","stylesheet");
@@ -15,8 +18,8 @@ var ant = new CellNode("blurbsky-vesmirny-kriznik");
 var tmp, i=0;
 ant.xy.place(x,y);
 
-while(i++<s){
- if(tmp=ant.cells[0].dir(a)){
+var f = function(){
+ if(tmp=ant.cells[0].dir(angle)){
   tmp=tmp.xy();
   ant.remove();
   ant.xy.place(tmp[0],tmp[1]);
@@ -27,18 +30,20 @@ while(i++<s){
    blk.xy.place(x,y);
   }
   
-  [x,y] = tmp;
+  try{[x,y] = tmp;}
+  catch(e){x = tmp[0]; y = tmp[1];}//ECMA sucks
   
   if(blk.cells.indexOf(World.xy(x,y))+1){
-   a++;
+   angle+=angle1;
   }else{
-   a--;
+   angle+=angle2;
   }
- }else{
-  break;
+  setTimeout(f,time);
  }
  
- a%=6; //Zabrání zaokrouhlování (integer => float)
+ angle%=6; //Zabrání zaokrouhlování (integer => float)
 }
+
+setTimeout(f,time);
 
 })();
