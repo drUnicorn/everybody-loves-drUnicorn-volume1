@@ -99,7 +99,7 @@
   this.on = this.domNode.addEventListener;
   this.xy(x,y);
  };
-
+ 
  win.CellNode = function(name){
   if(!this instanceof win.CellNode){return new win.CellNode(x,y);}
   var self = this;
