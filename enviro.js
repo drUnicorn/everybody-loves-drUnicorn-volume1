@@ -1,8 +1,10 @@
-//Redefine global vars
+//Shortands for global variables
 window.win = window;
-window.doc = window.document;
+window.doc = win.document;
+window.on  = win.addEventListener;
 
-//Some other stuff
+
+//Shortand for doc.createElement and doc.createElementNS
 doc.mkNode = function(n1,n2,n3){
  if(!n2||typeof n2 != "string"){
   return document.createElement(n1);
@@ -10,8 +12,6 @@ doc.mkNode = function(n1,n2,n3){
   return document.createElementNS(n1,n2);
  }
 }
-
-win.on = win.addEventListener;
 
 
 //Modify the DOM elements
@@ -29,6 +29,7 @@ Element.prototype.rmon     = Element.prototype.removeEventListener;
 Element.prototype.addChild = Element.prototype.appendChild;
 Element.prototype.rmChild  = Element.prototype.removeChild;
 Element.prototype.mkChild  = function(ns,tag,attrs){
+ //Combination of doc.createElement and node.appendChild
  var n = doc.mkNode(ns,tag,attrs);
  this.addChild(n);
  return n;

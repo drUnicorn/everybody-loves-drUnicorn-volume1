@@ -1,30 +1,41 @@
+/* Deklarace jmenných prostorů */
 @namespace "";
 @namespace html "http://www.w3.org/1999/xhtml";
+/*
+ K elementům ve jmenném prostoru xhtml lze přistupovat pomocí html|nazev-elementu
+ Elementy bez prefixu "html|" jsou elementy mimo jmenný prostor
+*/
 
-html|body {
-}
+/*
+ Pokud chcete změnit zoom, přepište všechny hodnoty s komentářem "zoom"
+*/
+
 row {
  display: block;
- height: calc(.25*150px);
- width: intrinsic; /* Safari */
- width: -moz-max-content; /* Gecko */
- width: -webkit-max-content; /* Webkit */
+ height: calc(.25*150px); /* zoom */
  overflow: visible;
  font-size: 0;
  margin: 0;
  padding: 0;
- transform: scale(.25);
+ transform: scale(.25); /* zoom */
  transform-origin: 0 0;
- -moz-transform: scale(.25);
+
+ /* Nestandartní rozšíření */
+ width: intrinsic;
+ width: -moz-max-content;
+ width: -webkit-max-content;
+ -moz-transform: scale(.25); /* zoom */
  -moz-transform-origin: 0 0;
- -webkit-transform: scale(.25);
+ -webkit-transform: scale(.25); /* zoom */
  -webkit-transform-origin: 0 0;
 }
 row:nth-child(2n-1) {
+ /* Posune každý lichý řádek */
  position: relative;
- left: calc(.25*86.6025404px);
+ left: calc(.25*86.6025404px); /* zoom */
 }
 cell {
+/* inline-block sice dovolí nastavit rozměry, ale nezalomí řádek */
  display: inline-block;
  margin: 0;
  padding: 0;
