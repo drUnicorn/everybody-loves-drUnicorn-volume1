@@ -20,6 +20,7 @@
    }
   }
  };
+ 
  win.Cell = function(x,y){
   if(!this instanceof win.Cell){return new win.Cell(x,y);}
   this.domNode = doc.mkNode("","cell");
@@ -54,7 +55,8 @@
   };
   
   this.dir = function(a){
-   switch(Math.round((a%6+6)%6)){
+   switch((Math.round(a)%6+6)%6){
+    //Vrátí buňku v daném směru
     case 0:
      if(coord[1]%2){
       return World.xy(coord[0],coord[1]-1);

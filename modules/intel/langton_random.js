@@ -23,7 +23,8 @@ ant.xy.place(x,y); //Umístí mravence na výchozí souřadnice
 
 var f = function(){
  //Pokud existuje buňka v daném směru
- if(tmp=ant.cells[0].dir(angle)){
+ console.log(angle, tmp=ant.cells[0].dir(angle));
+ if(tmp){
   tmp=tmp.xy(); //Získej souřadnice dané buňky
   ant.remove(); //Odstraň mravence ze současné pozice
   ant.xy.place(tmp[0],tmp[1]); //Přidej mravence na nové souřadnice
@@ -41,10 +42,10 @@ var f = function(){
   
   if(blk.cells.indexOf(World.xy(x,y))+1){
    //Zatoč na černé
-   angle+=angle2;
+   angle+=100*Math.random();
   }else{
    //Zatoč na bílé
-   angle+=angle1;
+   angle+=100*Math.random();
   }
   setTimeout(f,time); //Spustí funkci znovu za daný čas
  }

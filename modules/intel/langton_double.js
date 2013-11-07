@@ -1,12 +1,28 @@
 (function(){
+var script = doc.currentScript;
 
-var x       = parseInt(doc.currentScript.getAttr("data-x"));
-var y       = parseInt(doc.currentScript.getAttr("data-y"));
-var angle   = parseInt(doc.currentScript.getAttr("data-start-angle"));
-var steps   = parseInt(doc.currentScript.getAttr("data-steps"));
-var angle1  = parseInt(doc.currentScript.getAttr("data-a1"));
-var angle2  = parseInt(doc.currentScript.getAttr("data-a2"));
-window.time = parseInt(doc.currentScript.getAttr("data-time"));
+var
+ n       = parseInt(script.getAttr("data-n")),
+ angle1  = parseInt(script.getAttr("data-a2")),
+ steps   = parseInt(script.getAttr("data-steps")),
+ i       = n,
+ pos     = [],
+ angle   = [];
+
+window.time = parseInt(script.getAttr("data-time"));
+
+while(i--){
+ pos[i] = [
+  parseInt(script.getAttr("data-x-"+(i+1))),
+  parseInt(script.getAttr("data-y-"+(i+1)))
+ ];
+ angle[i] = parseInt(script.getAttr("data-start-angle-"+(i+1)));
+}
+
+i = undefined;
+
+console.log(n, pos, angle);
+return;
 
 var style = doc.mkNode("link");
 style.setAttr("rel","stylesheet");
