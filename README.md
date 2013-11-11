@@ -35,7 +35,7 @@ Pozn.: Spustí langtonova mravence na prázdné mapě 10x10, langtonův mravenec
 
 ##Jádro
 Jádro se zkládá ze souborů `enviro.js`, které v tomto dokumentu nebudu nijak zvlášť popisovat - jeho kód mluví za vše, `style.css` a `engine.js`.
-Engine pracuje na principu šestiúhelníkové mřížky. Mapa světa je dostupná pod globální proměnnou `window.World`, fungují zde dva typy souřadnic - `[x,y]` (prioritní) a `[q,r]`. Více informací o souřadnicích naleznete (zde)[http://www.redblobgames.com/grids/hexagons/] (použité systémy: even-r & axial). Vykreslování obsluhuje prohlížeč, v DOMu je mapa reprezentována elementy `<row>` pro řádky a elementy `<cell>` pro jednotlivé buňky.
+Engine pracuje na principu šestiúhelníkové mřížky. Mapa světa je dostupná pod globální proměnnou `window.World`, fungují zde dva typy souřadnic - `[x,y]` (prioritní) a `[q,r]`. Více informací o souřadnicích naleznete [zde](http://www.redblobgames.com/grids/hexagons/) (použité souřadnicové systémy: even-r & axial). Vykreslování obsluhuje prohlížeč, v DOMu je mapa reprezentována elementy `<row>` pro řádky a elementy `<cell>` pro jednotlivé buňky.
 
 ##Moduly
 Tahle část projektu je navržená tak, aby byla co nejlépe rozšiřitelná. Veškerý kód v modulech je uzavřený do takovéto konstrukce: `(function(){ ... })();`. To je proto, aby _nezamořoval_ prostor svými proměnnými - tento kód je totiž uzavřen do funkce, která se _posléze_ sama spustí - proměnné definované ve funkci zůstávají ve funkci. Pokud byste přeci jen chtěli vytvořit globální proměnnou, použijte objekt `window` (např. k `window.foo` lze přistupovat jako k `foo`, ale bude definováno globálně).
