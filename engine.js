@@ -3,26 +3,24 @@
  win.World = {
   "map": [],
   "xy": function(x,y){
-   if(!World.map[x]){return false;}
-   if(this.map[x][y]){
+   try{
     return this.map[x][y];
-   }else{
+   }catch(e){
     return false;
    }
   },
   "qr": function(q,r){
-   if(!World.map[r]){return false;}
-   y = q+Math.ceil(r/2);
-   if(this.map[r][y]){
-    return this.map[r][y];
-   }else{
+   try{
+    return this.map[r][q+Math.ceil(r/2)];
+   }catch(e){
     return false;
    }
   }
  };
+ 
  win.Cell = function(x,y){
   if(!this instanceof win.Cell){return new win.Cell(x,y);}
-  this.domNode = doc.mkNode("","cell");
+  this.domNode = doc.mkNode("","cell"); //document.createElementNS("cell","")
   this.domNode.mapNode = this;
   var coord = [x,y];
   
@@ -38,6 +36,7 @@
     if(!World.map[x]){World.map[x]=[];}
     World.map[x][y] = this;
     coord = [x,y];
+    return [x,y];
    };
   };
   
@@ -51,10 +50,12 @@
     World.map[r][y] = this;
     coord = [r][y];
    };
+   return [q,r];
   };
   
   this.dir = function(a){
-   switch(Math.round((a%6+6)%6)){
+   switch((Math.round(a)%6+6)%6){
+    //Vrátí buňku v daném směru
     case 0:
      if(coord[1]%2){
       return World.xy(coord[0],coord[1]-1);
@@ -96,15 +97,17 @@
   };
   
   this.elements = [];
-  this.on = this.domNode.addEventListener;
+  this.on   = this.domNode.on;
+  this.rmon = this.domNode.rmon;
   this.xy(x,y);
  };
  
- win.CellNode = function(name){
+ win.CellNode = function(name, value){
   if(!this instanceof win.CellNode){return new win.CellNode(x,y);}
   var self = this;
   this.nodeName = name;
   this.cells = [];
+  this.defaultValue = value;
   this.remove = function(x,y){
    if(typeof(x) == "number" && typeof(y) == "number"){
     i = self.cells.indexOf(World.xy(x,y));
@@ -123,13 +126,17 @@
   };
   this.xy = {};
   this.qr = {};
-  this.xy.place = function(x,y){
+  this.xy.place = function(x,y,value){
    n = World.xy(x,y);
    if(!n){return false;}
    i = self.cells.indexOf(n);
    if( !(i+1) ){
     self.cells[self.cells.length] = n;
-    n.domNode.addAttr("data-cellnode-"+self.nodeName);
+    if(value||this.defaultValue){
+     n.domNode.setAttr("data-cellnode-"+self.nodeName);
+    }else{
+     n.domNode.addAttr("data-cellnode-"+self.nodeName);
+    }
    }
   }
  };

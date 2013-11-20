@@ -13,24 +13,43 @@
   
   <!-- Modules -->
   <html:script
-   data-width="100"
-   data-height="100"
+   data-width="200"
+   data-height="200"
    src="./modules/maps/empty.js"
   />
   <html:script
-   data-x="50"
-   data-y="50"
-   data-a1="0"
-   data-a2="1"
-   data-start-angle="0"
-   data-steps="10"
-   data-time="100"
    src="./modules/intel/langton.js"
+   
+   data-name="m2"
+   
+   data-x="100"
+   data-y="100"
+   data-start-angle="0"
+   
+   data-a1="1"
+   data-a2="2"
+   data-time="1000"
+  />
+  <html:script
+   src="./modules/intel/langton.js"
+   
+   data-name="m1"
+   
+   data-x="101"
+   data-y="100"
+   data-start-angle="3"
+   
+   data-a1="1"
+   data-a2="2"
+   data-time="1000"
   />
   <!-- Langtonův mravenec
    1,5 - geometrické obrazce, kroky: 0, 6, 24, 30, 71, 77, 95, 101
    2,4 - dálnice hned od začátku bez zanechání stopy
-   0,1 - krásně entropické :D
+   2,0 - dálnice hned od začátku se stopou
+   2,3 - cyklické
+   3,2 - cyklické
+   1,0 - krásně entropické :D
   -->
  </html:body>
 </html:html>
