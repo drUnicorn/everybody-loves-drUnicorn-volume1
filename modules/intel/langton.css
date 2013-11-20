@@ -1,4 +1,7 @@
-[data-cellnode-blurbsky-vesmirny-kriznik]:after {
+[data-cellnode-blurbsky-vesmirny-kriznik]:after,
+[data-cellnode-m1]:after,
+[data-cellnode-m2]:after
+{
  content: "";
  position: relative;
  display: block;
@@ -9,6 +12,10 @@
  top: 65px;
  z-index: 10;
  border-radius: 10px;
+}
+
+[data-cellnode-m2]:after {
+ background: blue;
 }
 
 [data-cellnode-black] {

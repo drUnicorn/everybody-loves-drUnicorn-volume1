@@ -7,6 +7,7 @@ var steps   = parseInt(doc.currentScript.getAttr("data-steps"));
 var angle1  = parseInt(doc.currentScript.getAttr("data-a1"));
 var angle2  = parseInt(doc.currentScript.getAttr("data-a2"));
 window.time = parseInt(doc.currentScript.getAttr("data-time"));
+window.sn   = 0; //Number of steps
 
 var style = doc.mkNode("link");
 style.setAttr("rel","stylesheet");
@@ -15,13 +16,16 @@ doc.head.addChild(style);
 
 //Vytvoří nové CellNodes
 var blk = new CellNode("black");
-var ant = new CellNode("blurbsky-vesmirny-kriznik");
+var ant = new CellNode(
+ doc.currentScript.getAttr("data-name")
+);
 
 var tmp, i=0;
 
 ant.xy.place(x,y); //Umístí mravence na výchozí souřadnice
 
 var f = function(){
+ sn++;
  //Pokud existuje buňka v daném směru
  if(tmp=ant.cells[0].dir(angle)){
   tmp=tmp.xy(); //Získej souřadnice dané buňky
@@ -36,8 +40,8 @@ var f = function(){
    blk.xy.place(x,y);
   }
   
-  try{[x,y] = tmp;}
-  catch(e){x = tmp[0]; y = tmp[1];} //ECMA sucks
+  //[x,y] = tmp;
+  x = tmp[0]; y = tmp[1]; //ECMA sucks
   
   if(blk.cells.indexOf(World.xy(x,y))+1){
    //Zatoč na černé
@@ -46,10 +50,13 @@ var f = function(){
    //Zatoč na bílé
    angle+=angle1;
   }
-  setTimeout(f,time); //Spustí funkci znovu za daný čas
+  
+  if(sn!=steps){ //Pokud nebyl proveden zadaný počet kroků
+   setTimeout(f,time); //Spustí funkci znovu za daný čas
+  }
  }
  
- angle%=6; //Zabrání zaokrouhlování (integer => float)
+ angle%=6; //Zabrání "přetečení" (integer => float)
 }
 
 setTimeout(f,time); //Spustí funkci za daný čas
