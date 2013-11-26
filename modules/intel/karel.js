@@ -10,6 +10,7 @@
   style.setAttr("href","./modules/intel/karel.css");
   doc.head.addChild(style);
   
+  var blk = new CellNode("black");
   var krl = new CellNode("karel");
   
   krl.xy.place(x,y);
@@ -23,5 +24,27 @@
     else {
       alert("Narazil jsem! Au!")
     }
+  }  
+  win.karel.vlevo_vbok = function(){
+    smer --        
   }
+  
+  win.karel.poloz = function(){
+    if(blk.cells.indexOf(World.xy(x,y))+1){
+      alert("Není kam položit!");
+    }else{
+      blk.xy.place(x,y);
+    }        
+  }
+  
+  win.karel.zvedni = function(){
+    if(blk.cells.indexOf(World.xy(x,y))+1){
+      blk.remove(x,y);
+    }else{
+      alert("Není co zvednout!")
+    }
+  } 
+  
+  smer%=6
+  
 })()

@@ -11,3 +11,7 @@
  z-index: 10;
  border-radius: 10px;
 }
+
+[data-cellnode-black] {
+ background: url("../../images/hex_black.svg");                     
+}
