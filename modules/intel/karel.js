@@ -10,6 +10,7 @@
   style.setAttr("href","./modules/intel/karel.css");
   doc.head.addChild(style);
   
+  var red = new CellNode("red");
   var blk = new CellNode("black");
   var krl = new CellNode("karel");
   
@@ -26,25 +27,34 @@
     }
   }  
   win.karel.vlevo_vbok = function(){
-    smer --        
+    smer--;       
   }
   
   win.karel.poloz = function(){
-    if(blk.cells.indexOf(World.xy(x,y))+1){
+    xy = krl.cells[0].xy();
+    if(blk.cells.indexOf(World.xy(xy[0],xy[1]))+1){
       alert("Není kam položit!");
     }else{
-      blk.xy.place(x,y);
+      blk.xy.place(xy[0],xy[1]);
     }        
   }
   
   win.karel.zvedni = function(){
-    if(blk.cells.indexOf(World.xy(x,y))+1){
-      blk.remove(x,y);
+    xy = krl.cells[0].xy();
+    if(blk.cells.indexOf(World.xy(xy[0],xy[1]))+1){
+      blk.remove(xy[0],xy[1]);
     }else{
       alert("Není co zvednout!")
     }
   } 
   
-  smer%=6
+  smer%=6;
   
+  cells = doc.getElementsByTagName("cell");
+  i = cells.length;
+  while(i-->0){
+   cells[i].on("click",function(e){
+    cell = e.target.mapNode;
+   })
+  }
 })()

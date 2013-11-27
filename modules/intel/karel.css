@@ -15,3 +15,7 @@
 [data-cellnode-black] {
  background: url("../../images/hex_black.svg");                     
 }
+
+[data-cellnode-red] {
+ background: url("../../images/hex_red.svg");
+}
