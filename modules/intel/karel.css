@@ -1,0 +1,21 @@
+[data-cellnode-karel]:after
+{
+ content: "";
+ position: relative;
+ display: block;
+ background: red;
+ width: 50px;
+ height: 50px;
+ left: 65px;
+ top: 65px;
+ z-index: 10;
+ border-radius: 10px;
+}
+
+[data-cellnode-black] {
+ background: url("../../images/hex_black.svg");                     
+}
+
+[data-cellnode-red] {
+ background: url("../../images/hex_red.svg");
+}
