@@ -14,13 +14,17 @@
   var blk = new CellNode("black");
   var krl = new CellNode("karel");
  
-  krl.xy.place(x,y);
+  krl.xy.place(x,y);              
 
   win.karel.krok = function(){
       if(tmp=krl.cells[0].dir(smer)){
-        tmp=tmp.xy();
-        krl.remove(); 
-        krl.xy.place(tmp[0],tmp[1]);
+        if(red.cells.indexOf(tmp)+1){
+          alert("Narazil jsem! Au!");
+        }else{  
+          tmp=tmp.xy();
+          krl.remove(); 
+          krl.xy.place(tmp[0],tmp[1]);
+        }
       }else{
         alert("Narazil jsem! Au!");
       }
