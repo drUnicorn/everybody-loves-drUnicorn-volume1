@@ -98,7 +98,7 @@
   
   this.elements = [];
   this.on   = this.domNode.on;
-  this.on.rm = this.domNode.on.rm;
+  this.rmon = this.domNode.rmon;
   this.xy(x,y);
  };
  
@@ -112,13 +112,13 @@
    if(typeof(x) == "number" && typeof(y) == "number"){
     i = self.cells.indexOf(World.xy(x,y));
     if(i+1){
-     self.cells[i].domNode.attr.rm("data-cellnode-"+self.nodeName);
+     self.cells[i].domNode.rmAttr("data-cellnode-"+self.nodeName);
      self.cells.splice(i,1);
     }
    }else if(x === undefined && y === undefined){
     i=0;
     while(i<self.cells.length){
-     self.cells[i].domNode.attr.rm("data-cellnode-"+self.nodeName);
+     self.cells[i].domNode.rmAttr("data-cellnode-"+self.nodeName);
      i++;
     }
     self.cells = [];
@@ -133,9 +133,9 @@
    if( !(i+1) ){
     self.cells[self.cells.length] = n;
     if(value||this.defaultValue){
-     n.domNode.attr.set("data-cellnode-"+self.nodeName);
+     n.domNode.setAttr("data-cellnode-"+self.nodeName);
     }else{
-     n.domNode.attr.add("data-cellnode-"+self.nodeName);
+     n.domNode.addAttr("data-cellnode-"+self.nodeName);
     }
    }
   }
@@ -148,7 +148,7 @@
   this.cell = false;
   this.defaultValue = value;
   this.remove = function(){
-   self.cell.domNode.attr.rm("data-cellnode-"+self.nodeName);
+   self.cell.domNode.rmAttr("data-cellnode-"+self.nodeName);
    self.cell = false;
   };
   this.xy = {};
@@ -163,25 +163,25 @@
      if(value){
       self.defaultValue = value;
      }
-     n.domNode.attr.set("data-cellnode-"+self.nodeName,self.defaultValue);
+     n.domNode.setAttr("data-cellnode-"+self.nodeName,self.defaultValue);
     }else{
-     n.domNode.attr.add("data-cellnode-"+self.nodeName);
+     n.domNode.addAttr("data-cellnode-"+self.nodeName);
     }
    }
   };
   this.set = function(value){
    self.defaultValue = value;
    if(self.cell){
-    self.cell.domNode.attr.set("data-cellnode-"+self.nodeName,self.defaultValue);
+    self.cell.domNode.setAttr("data-cellnode-"+self.nodeName,self.defaultValue);
    }
   };
   this.rename = function(name){
    if(self.cell){
-    self.cell.domNode.attr.rm("data-cellnode-"+self.nodeName);
+    self.cell.domNode.rmAttr("data-cellnode-"+self.nodeName);
     if(self.defaultValue){
-     self.cell.domNode.attr.set("data-cellnode-"+name,self.defaultValue);
+     self.cell.domNode.setAttr("data-cellnode-"+name,self.defaultValue);
     }else{
-     self.cell.domNode.attr.add("data-cellnode-"+name);
+     self.cell.domNode.addAttr("data-cellnode-"+name);
     }
    }
    this.nodeName = name;
