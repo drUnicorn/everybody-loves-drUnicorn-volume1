@@ -1,3 +1,5 @@
+(function(){
+
 //Shortands for global variables
 window.win = window;
 window.doc = win.document;
@@ -13,31 +15,37 @@ doc.mkNode = function(n1,n2,n3){
  }
 }
 
+doc.query = doc.querySelector;
+doc.query.all = doc.querySelectorAll;
+
 
 //Modify the DOM elements
-Element.prototype.rm        = Element.prototype.remove;
+Element.prototype.rm              = Element.prototype.remove;
 
-Element.prototype.attr      = {};
-Element.prototype.attr.set  = Element.prototype.setAttribute;
-Element.prototype.attr.get  = Element.prototype.getAttribute;
-Element.prototype.attr.has  = Element.prototype.hasAttribute;
-Element.prototype.attr.add  = function(n){this.setAttr(n,"");};
-Element.prototype.attr.rm   = Element.prototype.removeAttribute;
+Element.prototype.attr            = {};
+Element.prototype.attr.__element  = Element.prototype;
+Element.prototype.attr.set        = function(){return this.__element.setAttribute.apply(this.__element,arguments);};
+Element.prototype.attr.get        = function(){return this.__element.getAttribute.apply(this.__element,arguments);};
+Element.prototype.attr.has        = function(){return this.__element.hasAttribute.apply(this.__element,arguments);};
+Element.prototype.attr.rm         = function(){return this.__element.removeAttribute.apply(this.__element,arguments);};
+Element.prototype.attr.add        = function(n){this.__element.setAttr(n,"");};
 
-Element.prototype.on        = Element.prototype.addEventListener;
-Element.prototype.on.rm     = Element.prototype.removeEventListener;
+Element.prototype.on              = Element.prototype.addEventListener;
+Element.prototype.on.rm           = Element.prototype.removeEventListener;
 
-Element.prototype.child     = {};
-Element.prototype.child.add = Element.prototype.appendChild;
-Element.prototype.child.rm  = Element.prototype.removeChild;
-Element.prototype.child.mk  = function(ns,tag,attrs){
+Element.prototype.child           = {};
+Element.prototype.child.__element = Element.prototype;
+Element.prototype.child.add       = function(){return this.__element.appendChild.apply(this.__element,arguments);};
+Element.prototype.child.rm        = function(){return this.__element.removeChild.apply(this.__element,arguments);};
+Element.prototype.child.mk = function(ns,tag,attrs){
  //Combination of doc.createElement and node.appendChild
  var n = doc.mkNode(ns,tag,attrs);
- this.addChild(n);
+ this.add(n);
  return n;
 };
 
 Element.prototype.class     = {};
+Element.prototype.class.__element = Element.prototype;
 Element.prototype.class.has = function(str){
  var attr = this.attr.get('class');
  try{
@@ -92,9 +100,11 @@ Element.prototype.class.get = function(){
   return [];
  }
 };
-Elements.prototype.class.splice = function(){
+Element.prototype.class.splice = function(){
  var attr = this.class.get();
  var result = attr.splice.apply(attr,arguments);
  this.class.set(attr);
  return result;
 }
+
+})();
