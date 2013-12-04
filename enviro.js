@@ -1,3 +1,5 @@
+(function(){
+
 //Shortands for global variables
 window.win = window;
 window.doc = win.document;
@@ -13,6 +15,8 @@ doc.mkNode = function(n1,n2,n3){
  }
 }
 
+doc.query = doc.querySelector;
+doc.query.all = function(){return doc.querySelectorAll.apply(doc,arguments);};
 
 //Modify the DOM elements
 Element.prototype.rm       = Element.prototype.remove;
@@ -34,3 +38,67 @@ Element.prototype.mkChild  = function(ns,tag,attrs){
  this.addChild(n);
  return n;
 };
+
+
+Element.prototype.hasClass = function(str){
+ var attr = this.attr.get('class');
+ try{
+  attr = attr.split(' ');
+  if(attr.indexOf(str)+1){
+   return true;
+  }
+ }catch(e){}
+ return false;
+};
+Element.prototype.addClass = function(str){
+ var attr = this.attr.get('class');
+ try{
+  attr = attr.split(' ');
+  if(attr.indexOf(str)+1){
+   return str;
+  }else{
+   attr[attr.length] = str;
+   attr = attr.join(' ');
+   this.attr.set('class',attr);
+   return str;
+  }
+ }catch(e){
+  this.attr.set('class',str);
+  return str;
+ }
+};
+Element.prototype.rmClass = function(str){
+ var attr = this.attr.get('class');
+ try{
+  var i;
+  attr = attr.split(' ');
+  if((i=attr.indexOf(str))+1){
+   attr.splice(i,1);
+   attr = attr.join(' ');
+   this.attr.set('class',attr);
+  }
+ }catch(e){}
+ return str;
+};
+Element.prototype.setClass = function(str){
+ try{
+  str = str.join(' ');
+ }catch(e){}
+ this.attr.set('class',str);
+};
+Element.prototype.getClass = function(){
+ var attr = this.attr.get('class');
+ try{
+  return attr.split(' ');
+ }catch(e){
+  return [];
+ }
+};
+Element.prototype.spliceClass = function(){
+ var attr = this.getClass();
+ var result = attr.splice.apply(attr,arguments);
+ this.setClass(attr);
+ return result;
+}
+
+})();

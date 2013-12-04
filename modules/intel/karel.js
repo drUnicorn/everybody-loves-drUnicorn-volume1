@@ -12,43 +12,43 @@
  
   var red = new CellNode("red");
   var blk = new CellNode("black");
-  var krl = new CellNode("karel");
+  var krl = new SingleCellNode("karel");
  
   krl.xy.place(x,y);              
 
   win.karel.krok = function(){
-      if(tmp=krl.cells[0].dir(smer)){
-        if(red.cells.indexOf(tmp)+1){
-          alert("Narazil jsem! Au!");
-        }else{  
-          tmp=tmp.xy();
-          krl.remove(); 
-          krl.xy.place(tmp[0],tmp[1]);
-        }
-      }else{
-        alert("Narazil jsem! Au!");
-      }
-    }  
+   if(tmp=krl.cell.dir(smer)){
+    if(!(red.cells.indexOf(tmp)+1)){
+     tmp=tmp.xy();
+     krl.remove();
+     krl.xy.place(tmp[0],tmp[1]);
+    }else{
+     alert("Narazil jsem! Au!");
+    }
+   }else{
+    alert("Narazil jsem! Au!");
+   }
+  }
   
   win.karel.vlevo_vbok = function(){
     smer--;       
   }
   
   win.karel.poloz = function(){
-    xy = krl.cells[0].xy();
+    xy = krl.cell.xy();
     if(blk.cells.indexOf(World.xy(xy[0],xy[1]))+1){
-      alert("NenÌ kam poloûit!");
+      alert("Nen√≠ kam polo≈æit!");
     }else{
       blk.xy.place(xy[0],xy[1]);
     }        
   }
   
   win.karel.zvedni = function(){
-    xy = krl.cells[0].xy();
+    xy = krl.cell.xy();
     if(blk.cells.indexOf(World.xy(xy[0],xy[1]))+1){
       blk.remove(xy[0],xy[1]);
     }else{
-      alert("NenÌ co zvednout!");
+      alert("Nen√≠ co zvednout!");
     }
   } 
   

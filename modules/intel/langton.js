@@ -16,7 +16,7 @@ doc.head.addChild(style);
 
 //Vytvoří nové CellNodes
 var blk = new CellNode("black");
-var ant = new CellNode(
+var ant = new SingleCellNode(
  doc.currentScript.getAttr("data-name")
 );
 
@@ -27,7 +27,7 @@ ant.xy.place(x,y); //Umístí mravence na výchozí souřadnice
 var f = function(){
  sn++;
  //Pokud existuje buňka v daném směru
- if(tmp=ant.cells[0].dir(angle)){
+ if(tmp=ant.cell.dir(angle)){
   tmp=tmp.xy(); //Získej souřadnice dané buňky
   ant.remove(); //Odstraň mravence ze současné pozice
   ant.xy.place(tmp[0],tmp[1]); //Přidej mravence na nové souřadnice

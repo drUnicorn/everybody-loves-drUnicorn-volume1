@@ -156,7 +156,6 @@
   this.xy.place = function(x,y,value){
    n = World.xy(x,y);
    if(!n){return false;}
-   i = self.cells.indexOf(n);
    if(self.cell != n){
     self.cell = n;
     if(value||self.defaultValue){
