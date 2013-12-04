@@ -12,6 +12,7 @@
  
   var red = new CellNode("red");
   var blk = new CellNode("black");
+  var blu = new CellNode("blue")
   var krl = new CellNode("karel");
  
   krl.xy.place(x,y);              
@@ -36,17 +37,17 @@
   
   win.karel.poloz = function(){
     xy = krl.cells[0].xy();
-    if(blk.cells.indexOf(World.xy(xy[0],xy[1]))+1){
+    if(blu.cells.indexOf(World.xy(xy[0],xy[1]))+1){
       alert("Není kam položit!");
     }else{
-      blk.xy.place(xy[0],xy[1]);
+      blu.xy.place(xy[0],xy[1]);
     }        
   }
   
   win.karel.zvedni = function(){
     xy = krl.cells[0].xy();
-    if(blk.cells.indexOf(World.xy(xy[0],xy[1]))+1){
-      blk.remove(xy[0],xy[1]);
+    if(blu.cells.indexOf(World.xy(xy[0],xy[1]))+1){
+      blu.remove(xy[0],xy[1]);
     }else{
       alert("Není co zvednout!");
     }
