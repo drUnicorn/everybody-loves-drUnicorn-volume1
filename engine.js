@@ -140,4 +140,51 @@
    }
   }
  };
+
+ win.SingleCellNode = function(name, value){
+  if(!this instanceof win.CellNode){return new win.CellNode(x,y);}
+  var self = this;
+  this.nodeName = name;
+  this.cell = false;
+  this.defaultValue = value;
+  this.remove = function(){
+   self.cell.domNode.rmAttr("data-cellnode-"+self.nodeName);
+   self.cell = false;
+  };
+  this.xy = {};
+  this.qr = {};
+  this.xy.place = function(x,y,value){
+   n = World.xy(x,y);
+   if(!n){return false;}
+   i = self.cells.indexOf(n);
+   if(self.cell != n){
+    self.cell = n;
+    if(value||self.defaultValue){
+     if(value){
+      self.defaultValue = value;
+     }
+     n.domNode.setAttr("data-cellnode-"+self.nodeName,self.defaultValue);
+    }else{
+     n.domNode.addAttr("data-cellnode-"+self.nodeName);
+    }
+   }
+  };
+  this.set = function(value){
+   self.defaultValue = value;
+   if(self.cell){
+    self.cell.domNode.setAttr("data-cellnode-"+self.nodeName,self.defaultValue);
+   }
+  };
+  this.rename = function(name){
+   if(self.cell){
+    self.cell.domNode.rmAttr("data-cellnode-"+self.nodeName);
+    if(self.defaultValue){
+     self.cell.domNode.setAttr("data-cellnode-"+name,self.defaultValue);
+    }else{
+     self.cell.domNode.addAttr("data-cellnode-"+name);
+    }
+   }
+   this.nodeName = name;
+  };
+ };
 })();
