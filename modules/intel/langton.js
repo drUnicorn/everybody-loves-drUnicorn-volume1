@@ -7,7 +7,13 @@ var steps   = parseInt(doc.currentScript.getAttr("data-steps"));
 var angle1  = parseInt(doc.currentScript.getAttr("data-a1"));
 var angle2  = parseInt(doc.currentScript.getAttr("data-a2"));
 window.time = parseInt(doc.currentScript.getAttr("data-time"));
+var name    = doc.currentScript.getAttr("data-name");
 window.sn   = 0; //Number of steps
+
+if(isNaN(angle)){angle=0;}
+if(isNaN(time)){time=1000;}
+if(isNaN(steps)){steps=-1;}
+if(name ==undefined){name="m1";}
 
 var style = doc.mkNode("link");
 style.setAttr("rel","stylesheet");
@@ -16,9 +22,7 @@ doc.head.addChild(style);
 
 //Vytvoří nové CellNodes
 var blk = new CellNode("black");
-var ant = new SingleCellNode(
- doc.currentScript.getAttr("data-name")
-);
+var ant = new SingleCellNode(name);
 
 var tmp, i=0;
 

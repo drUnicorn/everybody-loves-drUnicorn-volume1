@@ -15,6 +15,27 @@
    }catch(e){
     return false;
    }
+  },
+  "zoom": function(z){
+   try{
+    doc.getElementById("zoom").rm();
+   }catch(e){}
+   
+   var style = doc.mkNode("style");
+   style.setAttr("id","zoom");
+   style.textContent =
+    '@namespace "";\n'+
+    '@namespace html "http://www.w3.org/1999/xhtml";\n'+
+    'row {\n'+
+    ' height: calc('+z+'*150px);\n'+
+    ' transform: scale('+z+');\n'+
+    ' -moz-transform: scale('+z+');\n'+
+    ' -webkit-transform: scale('+z+');\n'+
+    '}\n'+
+    'row:nth-child(2n-1) {\n'+
+    ' left: calc('+z+'*86.6025404px);\n'+
+    '}\n';
+   doc.head.addChild(style);
   }
  };
  
