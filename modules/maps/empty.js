@@ -14,5 +14,4 @@ while(i++<height-1){
  }
 }
 
-console.log("Fünisched");
 })();
