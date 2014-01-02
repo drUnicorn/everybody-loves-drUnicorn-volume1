@@ -1,9 +1,0 @@
-[data-cellnode-jidlo] {
- background: url("../../images/hex_red.svg");                     
-}
-[data-cellnode-smrad="2"],
-[data-cellnode-smrad="4"],
-[data-cellnode-smrad="6"],
-[data-cellnode-smrad="8"] {
- background: url("../../images/hex_black.svg");                     
-}
