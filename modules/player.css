@@ -4,10 +4,10 @@
  position: relative;
  display: block;
  background: black; 
- width: 150px;
- height: 150px;
- left: 11px;
- top: 20px;
+ width: 100px;
+ height: 100px;
+ left: 36px;
+ top: 45px;
  z-index: 10;
  border-radius: 10px;
 }

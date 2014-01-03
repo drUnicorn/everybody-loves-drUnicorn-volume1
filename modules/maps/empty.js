@@ -14,4 +14,6 @@ while(i++<height-1){
  }
 }
 
+World.zoom(0.5);
+
 })();

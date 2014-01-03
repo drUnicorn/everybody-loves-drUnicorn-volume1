@@ -9,5 +9,6 @@ style.setAttr("href","./modules/player.css");
 doc.head.addChild(style);
 
 var player = new SingleCellNode("player");
+player.xy.place(x,y);
 
 })();
