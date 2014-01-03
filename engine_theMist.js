@@ -2,14 +2,13 @@
 win.Engine = {};
 Engine.devmode = false;
 
-win.wait = function(t,f){return setTimeout(f,t*1000);};
 win.wait.nd = function(t,f){
  if(!Engine.devmode){wait(t,f);}
  else{wait(0,f);}
 };
 
 Engine.key = {};
-win.key = Engine.key;
+win.key = Engine.key; //Change "win.key" to "var key" if needed
 key.press = {};
 key.map = [];
 key.map[8]  = "back";
