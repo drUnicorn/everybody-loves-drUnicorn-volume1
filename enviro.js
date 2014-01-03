@@ -1,9 +1,10 @@
 (function(){
 
 //Shortands for global variables
-window.win = window;
-window.doc = win.document;
-window.on  = win.addEventListener;
+window.win  = window;
+window.doc  = win.document;
+window.on   = win.addEventListener;
+window.rmon = win.removeEventListener;
 
 
 //Shortand for doc.createElement and doc.createElementNS
@@ -14,6 +15,9 @@ doc.mkNode = function(n1,n2,n3){
   return document.createElementNS(n1,n2);
  }
 }
+
+doc.on   = doc.addEventListener;
+doc.rmon = doc.removeEventListener;
 
 doc.query = doc.querySelector;
 doc.query.all = function(){return doc.querySelectorAll.apply(doc,arguments);};

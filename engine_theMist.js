@@ -1,27 +1,15 @@
-/* Init engine */
-win.engine = {};
-engine.canvas = doc.body.mkChild("div","",{"id":"canvas"});
+/* Init Engine */
+win.Engine = {};
+Engine.devmode = false;
 
-doc.head.mkChild("link","",{
- "rel":"stylesheet",
- "href":"./data/style/basic.css"
-});
-
-engine.canvas.menu = {};
-win.menu = engine.canvas.menu;
-
-engine.story = {};
-win.story = engine.story;
-
-engine.devmode = false;
-
-wait.nd = function(t,f){
- if(!engine.devmode){wait(t,f);}
+win.wait = function(t,f){return setTimeout(f,t*1000);};
+win.wait.nd = function(t,f){
+ if(!Engine.devmode){wait(t,f);}
  else{wait(0,f);}
 };
 
-engine.key = {};
-win.key = engine.key;
+Engine.key = {};
+win.key = Engine.key;
 key.press = {};
 key.map = [];
 key.map[8]  = "back";
@@ -45,11 +33,22 @@ key.map[45] = "ins";
 key.map[46] = "del";
 key.map[91] = "meta";
 key.map[93] = "opts";
+key.map[96] = "num0";
+key.map[97] = "num1";
+key.map[98] = "num2";
+key.map[99] = "num3";
+key.map[100]= "num4";
+key.map[101]= "num5";
+key.map[102]= "num6";
+key.map[103]= "num7";
+key.map[104]= "num8";
+key.map[105]= "num9";
 key.map[144]= "num";
 key.map[255]= "altgr";
 
 doc.on("keydown",function(e){
  if(key.map[e.keyCode]){e.keyAlias = key.map[e.keyCode];}
+ if(e.keyCode>95&&e.keyCode<106){e.keyNum = e.keyCode-96;}
  if(!key.press[e.keyCode]){
   if(key.events.down[e.keyCode]){
    var i = key.events.down[e.keyCode].length;
@@ -65,6 +64,7 @@ doc.on("keydown",function(e){
 });
 doc.on("keyup",function(e){
  if(key.map[e.keyCode]){e.keyAlias = key.map[e.keyCode];}
+ if(e.keyCode>95&&e.keyCode<106){e.keyNum = e.keyCode-96;}
  if(key.press[e.keyCode]){
   if(key.events.up[e.keyCode]){
    var i = key.events.up[e.keyCode].length;
@@ -76,7 +76,7 @@ doc.on("keyup",function(e){
   }
  }
  key.press[e.keyCode] = false;
- key.press[engine.key.map[e.keyCode]] = false;
+ key.press[Engine.key.map[e.keyCode]] = false;
 });
 
 key.events = {

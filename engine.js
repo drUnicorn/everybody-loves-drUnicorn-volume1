@@ -169,8 +169,13 @@
   this.cell = false;
   this.defaultValue = value;
   this.remove = function(){
-   self.cell.domNode.rmAttr("data-cellnode-"+self.nodeName);
-   self.cell = false;
+   if(self.cell){
+    self.cell.domNode.rmAttr("data-cellnode-"+self.nodeName);
+    self.cell = false;
+    return true;
+   }else{
+    return false;
+   }
   };
   this.xy = {};
   this.qr = {};
@@ -178,6 +183,7 @@
    n = World.xy(x,y);
    if(!n){return false;}
    if(self.cell != n){
+    self.remove();
     self.cell = n;
     if(value||self.defaultValue){
      if(value){
@@ -205,6 +211,15 @@
     }
    }
    this.nodeName = name;
+  };
+  this.dir = function(a){
+   var tmp = this.cell.dir(a);
+   if(tmp){
+    tmp=tmp.xy();
+    this.xy.place(tmp[0],tmp[1]);
+   }else{
+    return false;
+   }
   };
  };
 })();
