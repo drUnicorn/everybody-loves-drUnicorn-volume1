@@ -12,13 +12,13 @@ doc.mkNode = function(n1,n2,n3){
  var node, attrs;
  if(typeof n2 == "string"){
   node = document.createElementNS(n1,n2);
-  if(typeof n2 == "object"){
-   attrs=n2;
+  if(typeof n3 == "object"){
+   attrs=n3;
   }
  }else{
   node = document.createElement(n1);
-  if(typeof n3 == "object"){
-   attrs=n3;
+  if(typeof n2 == "object"){
+   attrs=n2;
   }
  }
  if(attrs){
@@ -42,7 +42,7 @@ doc.exe = function(path){
 
 //Modify the DOM elements
 Element.prototype.rm       = Element.prototype.remove;
-Element.prototype.clean    = function(){this.textContent="";};
+Element.prototype.clear    = function(){this.textContent="";};
 
 Element.prototype.setAttr  = Element.prototype.setAttribute;
 Element.prototype.getAttr  = Element.prototype.getAttribute;
